@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
         if (canHealPatient && Input.GetKeyDown(KeyCode.E)) {
             Debug.Log("Curou o maluco");
             isHoldingItem = false;
+            canHealPatient = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Q)) {
@@ -48,14 +49,14 @@ public class PlayerController : MonoBehaviour
             canPickUpItem = true;
         }
 
-        if (other.tag == "pacient_collider" && isHoldingItem) {
+        if (other.tag == "patient_collider" && isHoldingItem) {
             Debug.Log("Pode curar paciente");
             canHealPatient = true;
         }
 
-        if (other.tag == "pacient_collider" && !isHoldingItem) {
-            Debug.Log("Não pode curar paciente");
-        }
+        // if (other.tag == "patient_collider" && !canHealPatient) {
+        //     Debug.Log("Não pode curar paciente");
+        // }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -65,8 +66,8 @@ public class PlayerController : MonoBehaviour
             canPickUpItem = false;
         }
 
-        if (other.tag == "pacient_collider") {
-            Debug.Log("Não pode curar o rapaiz");
+        if (other.tag == "patient_collider") {
+            Debug.Log("Saiu do range de cura");
             canHealPatient = false;
         }
     }

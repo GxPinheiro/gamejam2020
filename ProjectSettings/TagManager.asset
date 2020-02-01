@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - patient_collider
+  - bandaid_collider
   layers:
   - Default
   - TransparentFX

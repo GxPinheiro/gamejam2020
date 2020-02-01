@@ -6,6 +6,7 @@ TagManager:
   tags:
   - patient_collider
   - bandaid_collider
+  - cauldron_collider
   layers:
   - Default
   - TransparentFX

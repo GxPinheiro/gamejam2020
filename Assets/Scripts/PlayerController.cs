@@ -5,10 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D player;
+    public float actionTimer = 4f;
 
     private bool isHoldingItem = false;
     private bool canPickUpItem = false;
     private bool canHealPatient = false;
+    private bool doingAction = false;
+    private bool actionDone = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +21,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // checkForMovement();
+        if (doingAction) {
+            calculateCountdown();
+        }
 
         if (Input.GetButtonDown("Fire1")) {
             inputFunction();
+        }
+
+        if (Input.GetButtonDown("Fire2")) {
+            doingAction = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Q)) {
@@ -76,5 +85,16 @@ public class PlayerController : MonoBehaviour
             isHoldingItem = false;
             canHealPatient = false;
         }
+    }
+
+    void calculateCountdown(){
+        actionTimer -= Time.deltaTime;
+        if(actionTimer < 0){
+            actionDone = true;
+            doingAction = false;
+            actionTimer = 5f;
+        }
+        Debug.Log(actionTimer);
+        Debug.Log(doingAction);
     }
 }

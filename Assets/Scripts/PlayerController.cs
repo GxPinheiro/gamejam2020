@@ -6,11 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D player;
     public float actionTimer = 4f;
+    public bool doingAction = false;
 
     private bool isHoldingItem = false;
     private bool canPickUpItem = false;
     private bool canHealPatient = false;
-    private bool doingAction = false;
     private bool actionDone = false;
     // Start is called before the first frame update
     void Start()
@@ -22,11 +22,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (doingAction) {
-            calculateCountdown();
+            CalculateCountdown();
         }
 
         if (Input.GetButtonDown("Fire1")) {
-            inputFunction();
+            InputFunction();
         }
 
         if (Input.GetButtonDown("Fire2")) {
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         }
     }   
 
-    void inputFunction(){
+    void InputFunction(){
         if (isHoldingItem) {
             Debug.Log("Dropou o item");
             isHoldingItem = false;
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void calculateCountdown(){
+    void CalculateCountdown(){
         actionTimer -= Time.deltaTime;
         if(actionTimer < 0){
             actionDone = true;

@@ -7,11 +7,12 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D player;
     public float actionTimer = 4f;
     public bool doingAction = false;
+    public bool isHoldingItem = false;
 
-    private bool isHoldingItem = false;
     private bool canPickUpItem = false;
     private bool canHealPatient = false;
     private bool actionDone = false;
+    private bool caldroonAction = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,11 +27,11 @@ public class PlayerController : MonoBehaviour
         }
 
         if (Input.GetButtonDown("Fire1")) {
-            InputFunction();
+            InputFire1Function();
         }
 
         if (Input.GetButtonDown("Fire2")) {
-            doingAction = true;
+            InputFire2Function();
         }
 
         if (isHoldingItem && !canHealPatient) {
@@ -55,6 +56,14 @@ public class PlayerController : MonoBehaviour
             canHealPatient = true;
         }
 
+        if (other.tag == "cauldron_collider" && isHoldingItem) {
+            Debug.Log("Pode usar calderao");
+            caldroonAction = true;
+        }
+
+        // if (other.tag == "patient_collider" && !canHealPatient) {
+        //     Debug.Log("Não pode curar paciente");
+        // }
         if (other.tag == "bandaid_collision") {
             Debug.Log("Bateu no bandaid");
         }
@@ -73,7 +82,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void InputFunction(){
+    void InputFire1Function(){
         if (canHealPatient && isHoldingItem) {
             Debug.Log("Curou o maluco");
             isHoldingItem = false;
@@ -91,6 +100,17 @@ public class PlayerController : MonoBehaviour
         if (canPickUpItem) {
             Debug.Log("Pegou item");
             isHoldingItem = true;
+        }
+    }
+
+    void InputFire2Function(){
+        if (!caldroonAction) {
+            doingAction = true;
+        }
+
+        if (caldroonAction) {
+            Debug.Log("Dropou o item 2");
+            isHoldingItem = false;
         }
     }
 

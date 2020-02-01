@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D player;
-    public int speed;
+
     private bool isHoldingItem = false;
     private bool canPickUpItem = false;
     private bool canHealPatient = false;
@@ -18,19 +18,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkForMovement();
+        // checkForMovement();
 
-        if (isHoldingItem == true && Input.GetKeyDown(KeyCode.E)) {
+        if (isHoldingItem == true && Input.GetButtonDown("Fire1")) {
             Debug.Log("Dropou o item");
             isHoldingItem = false;
         }
 
-        if (canPickUpItem && Input.GetKeyDown(KeyCode.E)) {
+        if (canPickUpItem && Input.GetButtonDown("Fire1")) {
             Debug.Log("Pegou item");
             isHoldingItem = true;
         }
 
-        if (canHealPatient && Input.GetKeyDown(KeyCode.E)) {
+        if (canHealPatient && Input.GetButtonDown("Fire1")) {
             Debug.Log("Curou o maluco");
             isHoldingItem = false;
             canHealPatient = false;
@@ -70,23 +70,5 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Saiu do range de cura");
             canHealPatient = false;
         }
-    }
-
-    private void checkForMovement() {
-        if (Input.GetKey(KeyCode.W)) {
-            transform.position = transform.position + new Vector3(0, speed * Time.deltaTime, 0);
-        }
-
-        if (Input.GetKey(KeyCode.A)) {
-            transform.position = transform.position - new Vector3(speed * Time.deltaTime, 0, 0);
-        }
-
-        if (Input.GetKey(KeyCode.S)) {
-            transform.position = transform.position - new Vector3(0, speed * Time.deltaTime, 0);
-        }
-
-        if (Input.GetKey(KeyCode.D)) {
-            transform.position = transform.position + new Vector3(speed * Time.deltaTime, 0, 0);
-        }
-    }
+    }   
 }

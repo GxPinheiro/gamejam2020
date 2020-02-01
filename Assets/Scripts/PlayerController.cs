@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D player;
+    public Rigidbody2D player;
     public int speed;
+    private bool isHoldingItem = false;
+    private bool canPickUpItem = false;
+    private bool canHealPatient = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,23 +18,56 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = 0;
-
-        Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
-        // mousePosition.x = mousePosition.x - player.position.x;
-        // mousePosition.y = mousePosition.y - player.position.y;
-
-        float angle = Mathf.Atan2(mousePosition.x, mousePosition.y) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0,0,angle));
-
         checkForMovement();
-        checkForShoot();
+
+        if (isHoldingItem == true && Input.GetKeyDown(KeyCode.E)) {
+            Debug.Log("Dropou o item");
+            isHoldingItem = false;
+        }
+
+        if (canPickUpItem && Input.GetKeyDown(KeyCode.E)) {
+            Debug.Log("Pegou item");
+            isHoldingItem = true;
+        }
+
+        if (canHealPatient && Input.GetKeyDown(KeyCode.E)) {
+            Debug.Log("Curou o maluco");
+            isHoldingItem = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            Debug.Log("Holding" + isHoldingItem);
+            Debug.Log("pickup" + canPickUpItem);
+            Debug.Log("heal" + canHealPatient);
+        }
     }
 
-    private void checkForShoot() {
-        if (Input.GetButtonDown("Fire1")) {
-            Debug.Log("TESTE");
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "bandaid_collider" && !isHoldingItem) {
+            Debug.Log("Pode pegar item");
+            canPickUpItem = true;
+        }
+
+        if (other.tag == "pacient_collider" && isHoldingItem) {
+            Debug.Log("Pode curar paciente");
+            canHealPatient = true;
+        }
+
+        if (other.tag == "pacient_collider" && !isHoldingItem) {
+            Debug.Log("Não pode curar paciente");
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "bandaid_collider") {
+            Debug.Log("Não pode mais pegar item");
+            canPickUpItem = false;
+        }
+
+        if (other.tag == "pacient_collider") {
+            Debug.Log("Não pode curar o rapaiz");
+            canHealPatient = false;
         }
     }
 

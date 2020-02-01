@@ -20,20 +20,8 @@ public class PlayerController : MonoBehaviour
     {
         // checkForMovement();
 
-        if (isHoldingItem == true && Input.GetButtonDown("Fire1")) {
-            Debug.Log("Dropou o item");
-            isHoldingItem = false;
-        }
-
-        if (canPickUpItem && Input.GetButtonDown("Fire1")) {
-            Debug.Log("Pegou item");
-            isHoldingItem = true;
-        }
-
-        if (canHealPatient && Input.GetButtonDown("Fire1")) {
-            Debug.Log("Curou o maluco");
-            isHoldingItem = false;
-            canHealPatient = false;
+        if (Input.GetButtonDown("Fire1")) {
+            inputFunction();
         }
 
         if (Input.GetKeyDown(KeyCode.Q)) {
@@ -71,4 +59,22 @@ public class PlayerController : MonoBehaviour
             canHealPatient = false;
         }
     }   
+
+    void inputFunction(){
+        if (isHoldingItem) {
+            Debug.Log("Dropou o item");
+            isHoldingItem = false;
+        }
+
+        if (canPickUpItem) {
+            Debug.Log("Pegou item");
+            isHoldingItem = true;
+        }
+
+        if (canHealPatient) {
+            Debug.Log("Curou o maluco");
+            isHoldingItem = false;
+            canHealPatient = false;
+        }
+    }
 }

@@ -33,6 +33,10 @@ public class PlayerController : MonoBehaviour
             doingAction = true;
         }
 
+        if (isHoldingItem && !canHealPatient) {
+            Debug.Log("Colocar sprite segurando o item");
+        }
+
         if (Input.GetKeyDown(KeyCode.Q)) {
             Debug.Log("Holding" + isHoldingItem);
             Debug.Log("pickup" + canPickUpItem);
@@ -41,7 +45,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "bandaid_collider" && !isHoldingItem) {
+        if (other.tag == "bandaid_spawner_collider" && !isHoldingItem) {
             Debug.Log("Pode pegar item");
             canPickUpItem = true;
         }
@@ -51,14 +55,14 @@ public class PlayerController : MonoBehaviour
             canHealPatient = true;
         }
 
-        // if (other.tag == "patient_collider" && !canHealPatient) {
-        //     Debug.Log("Não pode curar paciente");
-        // }
+        if (other.tag == "bandaid_collision") {
+            Debug.Log("Bateu no bandaid");
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "bandaid_collider") {
+        if (other.tag == "bandaid_spawner_collider") {
             Debug.Log("Não pode mais pegar item");
             canPickUpItem = false;
         }
@@ -67,23 +71,26 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Saiu do range de cura");
             canHealPatient = false;
         }
-    }   
+    }
 
     void InputFunction(){
+        if (canHealPatient && isHoldingItem) {
+            Debug.Log("Curou o maluco");
+            isHoldingItem = false;
+            canHealPatient = false;
+            return;
+        }
+
         if (isHoldingItem) {
             Debug.Log("Dropou o item");
+            Debug.Log("Voltar sprite que nao esta segurando o item e deixa o item no chao");
             isHoldingItem = false;
+            return;
         }
 
         if (canPickUpItem) {
             Debug.Log("Pegou item");
             isHoldingItem = true;
-        }
-
-        if (canHealPatient) {
-            Debug.Log("Curou o maluco");
-            isHoldingItem = false;
-            canHealPatient = false;
         }
     }
 

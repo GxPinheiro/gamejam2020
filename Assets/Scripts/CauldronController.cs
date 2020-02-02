@@ -6,18 +6,20 @@ public class CauldronController : MonoBehaviour
 {
     public float actionTimer = 2f;
 
+    private bool potionReady = false;
     private bool doingAction = false;
     private bool enableAction = false;
-    private bool potionReady = false;
 
     PlayerController playerController;
     public Animator animator;
 
-    void Start() {
+    void Start()
+    {
         GameObject thePlayer = GameObject.Find("player");
         playerController = thePlayer.GetComponent<PlayerController>();
 
     }
+
     void Update()
     {
         enableAction = playerController.isHoldingItem;
@@ -52,12 +54,12 @@ public class CauldronController : MonoBehaviour
         }
 
         enableAction  = false;
-    } 
+    }
 
-
-    void CalculateCountdown(){
+    void CalculateCountdown()
+    {
         actionTimer -= Time.deltaTime;
-        if(actionTimer < 0){
+        if (actionTimer < 0) {
             doingAction = false;
             actionTimer = 5f;
             potionReady = true;

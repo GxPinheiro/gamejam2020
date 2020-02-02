@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MenuInicial : MonoBehaviour
 {
-
     public string levelToLoad;
 
     // Start is called before the first frame update

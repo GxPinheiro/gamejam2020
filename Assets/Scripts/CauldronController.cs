@@ -6,7 +6,6 @@ public class CauldronController : MonoBehaviour
 {
     public float actionTimer = 2f;
     private bool doingAction = false;
-
     private bool enableAction = false;
 
     PlayerController playerController;
@@ -18,7 +17,6 @@ public class CauldronController : MonoBehaviour
     void Update()
     {
         enableAction = playerController.isHoldingItem;
-        
 
         if (doingAction) {
             CalculateCountdown();
@@ -29,7 +27,6 @@ public class CauldronController : MonoBehaviour
             enableAction = false;
             CalculateCountdown();
         }
-        
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -41,8 +38,7 @@ public class CauldronController : MonoBehaviour
         }
 
         enableAction  = false;
-    } 
-
+    }
 
     void CalculateCountdown(){
         actionTimer -= Time.deltaTime;

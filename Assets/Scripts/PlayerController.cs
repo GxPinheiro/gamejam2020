@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D player;
+    public Animator animator;
+
     public float actionTimer = 4f;
     public bool doingAction = false;
     public bool isHoldingItem = false;
@@ -15,12 +17,9 @@ public class PlayerController : MonoBehaviour
     private bool caldroonAction = false;
     // Start is called before the first frame update
 
-    public Animator animator;
-
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
-
     }
 
     // Update is called once per frame
@@ -38,7 +37,6 @@ public class PlayerController : MonoBehaviour
             InputFire2Function();
         }
 
-
         if (Input.GetKeyDown(KeyCode.Q)) {
             Debug.Log("Holding" + isHoldingItem);
             Debug.Log("pickup" + canPickUpItem);
@@ -46,7 +44,6 @@ public class PlayerController : MonoBehaviour
         }
 
         if (isHoldingItem) {
-            //Debug.Log("Colocar sprite segurando o item");
             animator.SetBool("PurpleThingFlag", true);
             return;
         }
@@ -69,9 +66,6 @@ public class PlayerController : MonoBehaviour
             caldroonAction = true;
         }
 
-        // if (other.tag == "patient_collider" && !canHealPatient) {
-        //     Debug.Log("Não pode curar paciente");
-        // }
         if (other.tag == "bandaid_collision") {
             Debug.Log("Bateu no bandaid");
         }
@@ -93,6 +87,7 @@ public class PlayerController : MonoBehaviour
     void InputFire1Function(){
         if (canHealPatient && isHoldingItem) {
             Debug.Log("Curou o maluco");
+            Debug.Log("Voltar o sprite que não está segurando o item");
             isHoldingItem = false;
             canHealPatient = false;
             return;

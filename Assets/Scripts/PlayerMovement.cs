@@ -6,8 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
     public float moveSpeed = 5f;
-    Vector2 movement;
     private bool freezePlayer = false;
+    Vector2 movement;
     PlayerController playerController;
 
     public Rigidbody2D rigidBody;
@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
     void Start() {
         GameObject thePlayer = GameObject.Find("player");
         playerController = thePlayer.GetComponent<PlayerController>();
-
     }
 
     // Update is called once per frame

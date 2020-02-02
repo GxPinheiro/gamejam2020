@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 261d4d4ca2efad1499edd2e0bb4d9e44
+guid: df83c33b3ed2fdf42b3e56073ec100eb
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Herbs_0
-    21300002: Herbs_1
+    21300000: bancadaLado_0
+    21300002: bancadaLado_1
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Herbs_0
+      name: bancadaLado_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,13 +111,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64947aa8a7367aa438a71b4a70dfa574
+      spriteID: 0753ecaceba7f9f4484bbfe07edbdd4e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Herbs_1
+      name: bancadaLado_1
       rect:
         serializedVersion: 2
         x: 0
@@ -131,7 +131,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d471a140ebf205489485100be192baf
+      spriteID: 528af301853716b4bb222133cf0ae8f2
       vertices: []
       indices: 
       edges: []
@@ -139,7 +139,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 197a8f046d204724e8bf5321130e278f
+    spriteID: 1b22124cbeeb5154aad43bea4f3dcb7a
     vertices: []
     indices: 
     edges: []

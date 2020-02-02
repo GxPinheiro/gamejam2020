@@ -14,9 +14,13 @@ public class PlayerController : MonoBehaviour
     private bool actionDone = false;
     private bool caldroonAction = false;
     // Start is called before the first frame update
+
+    public Animator animator;
+
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
@@ -34,15 +38,19 @@ public class PlayerController : MonoBehaviour
             InputFire2Function();
         }
 
-        if (isHoldingItem && !canHealPatient) {
-            Debug.Log("Colocar sprite segurando o item");
-        }
 
         if (Input.GetKeyDown(KeyCode.Q)) {
             Debug.Log("Holding" + isHoldingItem);
             Debug.Log("pickup" + canPickUpItem);
             Debug.Log("heal" + canHealPatient);
         }
+
+        if (isHoldingItem) {
+            //Debug.Log("Colocar sprite segurando o item");
+            animator.SetBool("PurpleThingFlag", true);
+            return;
+        }
+        animator.SetBool("PurpleThingFlag", false);
     }
 
     void OnTriggerEnter2D(Collider2D other) {

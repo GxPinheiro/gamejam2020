@@ -9,6 +9,8 @@ public class BedController : MonoBehaviour
     public float cooldown;
     private float nextPatient;
     private int[] availableBeds = new int[3];
+
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class BedController : MonoBehaviour
                 if (availableBeds[i] == 0) {
                     Debug.Log("ENTROU");
                     Debug.Log("Colocar animacao da cama");
+                    animator.SetBool("PersonInBed", true);
                     availableBeds[i] = 1;
                     break;
                 }

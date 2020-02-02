@@ -24,12 +24,6 @@ public class BedController : MonoBehaviour
     {
         nextPatient -= Time.deltaTime;
         if (nextPatient < 0) {
-            // pode spawnar:
-            // verificar se existe cama vazia
-            // pegar o nome do objeto (_0, _1 ou _2)
-            // mudar o sprite da cama
-            // setar a cama como ocupada
-            // resetar cooldown
             for (var i = 0; i < 3; i++) {
                 if (availableBeds[i] == 0) {
                     Debug.Log("ENTROU");

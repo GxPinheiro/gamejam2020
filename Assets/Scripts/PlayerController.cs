@@ -50,7 +50,8 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("PurpleThingFlag", false);
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
+    void OnTriggerEnter2D(Collider2D other)
+    {
         if (other.tag == "bandaid_spawner_collider" && !isHoldingItem) {
             Debug.Log("Pode pegar item");
             canPickUpItem = true;
@@ -84,7 +85,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void InputFire1Function(){
+    void InputFire1Function()
+    {
         if (canHealPatient && isHoldingItem) {
             Debug.Log("Curou o maluco");
             Debug.Log("Voltar o sprite que não está segurando o item");
@@ -106,7 +108,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void InputFire2Function(){
+    void InputFire2Function()
+    {
         if (!caldroonAction) {
             doingAction = true;
         }
@@ -117,13 +120,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void CalculateCountdown(){
+    void CalculateCountdown()
+    {
         actionTimer -= Time.deltaTime;
-        if(actionTimer < 0){
+        if (actionTimer < 0) {
             actionDone = true;
             doingAction = false;
             actionTimer = 5f;
         }
+
         Debug.Log(actionTimer);
         Debug.Log(doingAction);
     }

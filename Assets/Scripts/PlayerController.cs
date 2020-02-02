@@ -10,21 +10,29 @@ public class PlayerController : MonoBehaviour
     public float actionTimer = 4f;
     public bool doingAction = false;
     public bool isHoldingItem = false;
+    public bool healDone = false;
+    public bool caldroonAction = false;
 
     private bool canPickUpItem = false;
     private bool canHealPatient = false;
-    private bool actionDone = false;
-    private bool caldroonAction = false;
-    // Start is called before the first frame update
+    private bool holdingPotion = false; 
+    // private bool actionDone = false;
+    private bool potionReady = false;
+
+    private CauldronController cauldronController;
 
     void Start()
     {
+        GameObject theCauldron = GameObject.Find("Cauldron");
+        cauldronController = theCauldron.GetComponent<CauldronController>();
         player = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        potionReady = cauldronController.potionReady;
+
         if (doingAction) {
             CalculateCountdown();
         }
@@ -33,18 +41,16 @@ public class PlayerController : MonoBehaviour
             InputFire1Function();
         }
 
-        if (Input.GetButtonDown("Fire2")) {
-            InputFire2Function();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q)) {
-            Debug.Log("Holding" + isHoldingItem);
-            Debug.Log("pickup" + canPickUpItem);
-            Debug.Log("heal" + canHealPatient);
-        }
+        // if (Input.GetButtonDown("Fire2")) {
+        //     InputFire2Function();
+        // }
 
         if (isHoldingItem) {
             animator.SetBool("PurpleThingFlag", true);
+            return;
+        }
+        if (holdingPotion) {
+            // gflag holding potion
             return;
         }
         animator.SetBool("PurpleThingFlag", false);
@@ -63,12 +69,7 @@ public class PlayerController : MonoBehaviour
         }
 
         if (other.tag == "cauldron_collider" && isHoldingItem) {
-            Debug.Log("Pode usar calderao");
             caldroonAction = true;
-        }
-
-        if (other.tag == "bandaid_collision") {
-            Debug.Log("Bateu no bandaid");
         }
     }
 
@@ -83,13 +84,17 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Saiu do range de cura");
             canHealPatient = false;
         }
+
+        if (other.tag == "cauldron_collider") {
+            caldroonAction = false;
+        }
+
     }
 
     void InputFire1Function()
     {
-        if (canHealPatient && isHoldingItem) {
+        if (canHealPatient && isHoldingItem && holdingPotion) {
             Debug.Log("Curou o maluco");
-            Debug.Log("Voltar o sprite que não está segurando o item");
             isHoldingItem = false;
             canHealPatient = false;
             return;
@@ -97,7 +102,6 @@ public class PlayerController : MonoBehaviour
 
         if (isHoldingItem) {
             Debug.Log("Dropou o item");
-            Debug.Log("Voltar sprite que nao esta segurando o item e deixa o item no chao");
             isHoldingItem = false;
             return;
         }
@@ -111,7 +115,7 @@ public class PlayerController : MonoBehaviour
     void InputFire2Function()
     {
         if (!caldroonAction) {
-            doingAction = true;
+            // doingAction = true;
         }
 
         if (caldroonAction) {
@@ -124,12 +128,9 @@ public class PlayerController : MonoBehaviour
     {
         actionTimer -= Time.deltaTime;
         if (actionTimer < 0) {
-            actionDone = true;
+            // actionDone = true;
             doingAction = false;
             actionTimer = 5f;
         }
-
-        Debug.Log(actionTimer);
-        Debug.Log(doingAction);
     }
 }

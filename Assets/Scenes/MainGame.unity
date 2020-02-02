@@ -3018,7 +3018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1055940907
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3178,6 +3178,7 @@ GameObject:
   - component: {fileID: 1193739627}
   - component: {fileID: 1193739626}
   - component: {fileID: 1193739628}
+  - component: {fileID: 1193739629}
   m_Layer: 0
   m_Name: Cauldron
   m_TagString: Untagged
@@ -3287,6 +3288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionTimer: 4
+  potionReady: 0
   animator: {fileID: 1193739628}
 --- !u!95 &1193739628
 Animator:
@@ -3307,6 +3309,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!50 &1193739629
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193739623}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &1350688341
 GameObject:
   m_ObjectHideFlags: 0
@@ -3629,6 +3652,8 @@ MonoBehaviour:
   actionTimer: 4
   doingAction: 0
   isHoldingItem: 0
+  healDone: 0
+  caldroonAction: 0
 --- !u!50 &1500979820
 Rigidbody2D:
   serializedVersion: 4

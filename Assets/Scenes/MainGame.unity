@@ -3283,7 +3283,7 @@ GameObject:
   - component: {fileID: 1070625870}
   m_Layer: 0
   m_Name: bed_3_collider
-  m_TagString: bandaid_collider
+  m_TagString: patient_collider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3346,7 +3346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1118454843
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3932,6 +3932,7 @@ MonoBehaviour:
   isHoldingItem: 0
   healDone: 0
   caldroonAction: 0
+  holdingPotion: 0
 --- !u!50 &1500979820
 Rigidbody2D:
   serializedVersion: 4
@@ -7044,7 +7045,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300026, guid: 1c6ca6213e1f3764f910ce91ddd675c2, type: 3}
+  m_Sprite: {fileID: 21300016, guid: 63ea26b3c3203d943b6eaa8c603d86fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7052,7 +7053,7 @@ SpriteRenderer:
   m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1931773209

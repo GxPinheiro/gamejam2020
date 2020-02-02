@@ -12,10 +12,10 @@ public class PlayerController : MonoBehaviour
     public bool isHoldingItem = false;
     public bool healDone = false;
     public bool caldroonAction = false;
+    public bool holdingPotion = false; 
 
     private bool canPickUpItem = false;
     private bool canHealPatient = false;
-    private bool holdingPotion = false; 
     // private bool actionDone = false;
     private bool potionReady = false;
 
@@ -50,9 +50,10 @@ public class PlayerController : MonoBehaviour
             return;
         }
         if (holdingPotion) {
-            // gflag holding potion
+            animator.SetBool("GreenPotionFlag", true);
             return;
         }
+        animator.SetBool("GreenPotionFlag", false);
         animator.SetBool("PurpleThingFlag", false);
     }
 
@@ -63,12 +64,12 @@ public class PlayerController : MonoBehaviour
             canPickUpItem = true;
         }
 
-        if (other.tag == "patient_collider" && isHoldingItem) {
+        if (other.tag == "patient_collider" && holdingPotion) {
             Debug.Log("Pode curar paciente");
             canHealPatient = true;
         }
 
-        if (other.tag == "cauldron_collider" && isHoldingItem) {
+        if (other.tag == "cauldron_collider") {
             caldroonAction = true;
         }
     }
@@ -93,9 +94,9 @@ public class PlayerController : MonoBehaviour
 
     void InputFire1Function()
     {
-        if (canHealPatient && isHoldingItem && holdingPotion) {
+        if (canHealPatient && holdingPotion) {
             Debug.Log("Curou o maluco");
-            isHoldingItem = false;
+            holdingPotion = false;
             canHealPatient = false;
             return;
         }

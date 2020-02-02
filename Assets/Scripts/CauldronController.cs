@@ -36,11 +36,12 @@ public class CauldronController : MonoBehaviour
                 enableAction = false;
                 CalculateCountdown();
             }
-
             if (Input.GetButtonDown("Fire1") && !playerController.isHoldingItem && !doingAction)
             {
                 animator.SetBool("Empty", true);
                 animator.SetBool("Cooking", false);
+                playerController.holdingPotion = true;
+
             }
         }
 

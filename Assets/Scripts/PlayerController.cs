@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D player;
     public Animator animator;
 
-    BedController bedController;
+    private BedController bedController;
     private CauldronController cauldronController;
 
     public float actionTimer = 4f;
@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public bool healDone = false;
     public bool caldroonAction = false;
     public bool holdingPotion = false;
+    public int[] teste = new int[3];
+    // public bool healDone = false;
 
     private bool canPickUpItem = false;
     private bool canHealPatient = false;
@@ -26,7 +28,10 @@ public class PlayerController : MonoBehaviour
     {
         GameObject theCauldron = GameObject.Find("Cauldron");
         cauldronController = theCauldron.GetComponent<CauldronController>();
-        bedController = theCauldron.GetComponent<BedController>();
+
+        GameObject theBed = GameObject.Find("bed_controller");
+        bedController = theBed.GetComponent<BedController>();
+
         player = GetComponent<Rigidbody2D>();
     }
 
@@ -99,7 +104,8 @@ public class PlayerController : MonoBehaviour
         if (canHealPatient && holdingPotion) {
             Debug.Log("Curou o maluco");
             // importar o bedController
-            Debug.Log(bedController);
+            healDone =  true;
+
             holdingPotion = false;
             canHealPatient = false;
             return;
